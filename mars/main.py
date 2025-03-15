@@ -6,6 +6,7 @@ from data.users import User
 from data.jobs import Jobs
 from form.login import LoginForm
 from form.register import RegisterForm
+from form.job_add import WorkForm
 
 app = Flask(__name__)
 login_manager = LoginManager()
@@ -71,6 +72,24 @@ def register():
         db_sess.commit()
         return redirect('/')
     return render_template('register.html', title='Регистрация', form=form)
+
+
+@app.route('/addjob', methods=['GET', 'POST'])
+def add_job():
+    form = WorkForm()
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        job = Jobs(
+            team_leader=form.team_leader.data,
+            job=form.job.data,
+            work_size=form.work_size.data,
+            collaborators=form.collaborators.data,
+            is_finished=form.is_finished.data,
+        )
+        db_sess.add(job)
+        db_sess.commit()
+        return redirect('/')
+    return render_template('job_add.html', title='Регистрация', form=form)
 
 
 @app.route('/logout')
