@@ -6,6 +6,7 @@ from data.users import User
 from data.jobs import Jobs
 from form.login import LoginForm
 from form.register import RegisterForm
+from data import jobs_api
 from form.job_add import WorkForm
 
 app = Flask(__name__)
@@ -101,6 +102,7 @@ def logout():
 
 def main():
     db_session.global_init("db/blogs.db")
+    app.register_blueprint(jobs_api.blueprint)
     app.run()
 
 
