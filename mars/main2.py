@@ -9,7 +9,7 @@ from form.register import RegisterForm
 from data import jobs_api
 from form.job_add import WorkForm
 from flask_restful import reqparse, abort, Api, Resource
-from mars.data import users_resource
+from data import users_resource
 
 app = Flask(__name__)
 api = Api(app) ###

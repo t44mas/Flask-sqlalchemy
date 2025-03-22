@@ -1,9 +1,9 @@
 from flask import abort, jsonify
 from flask_restful import reqparse, abort, Api, Resource
 
-from blog.data import db_session
-from blog.data.news import News
-from blog.data.regparse import parser
+from . import db_session
+from .news import News
+from .regparse import parser
 
 
 def abort_if_news_not_found(news_id):
