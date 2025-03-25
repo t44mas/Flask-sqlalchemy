@@ -3,7 +3,7 @@ from flask_restful import reqparse, abort, Api, Resource
 
 from . import db_session
 from .users import User
-from .regparse import parser
+from .user_regparse import parser
 
 
 def abort_if_news_not_found(user_id):

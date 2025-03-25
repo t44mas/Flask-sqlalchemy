@@ -9,7 +9,7 @@ from form.register import RegisterForm
 from data import jobs_api
 from form.job_add import WorkForm
 from flask_restful import reqparse, abort, Api, Resource
-from data import users_resource
+from data import users_resource, jobs_resource
 
 app = Flask(__name__)
 api = Api(app) ###
@@ -110,6 +110,13 @@ def main():
 
     # для одного объекта
     api.add_resource(users_resource.UsersResource, '/api/v2/users/<int:user_id>')
+
+    # для списка объектов
+    api.add_resource(jobs_resource.JobsListResource, '/api/v2/jobs')
+
+    # для одного объекта
+    api.add_resource(jobs_resource.JobsResource, '/api/v2/jobs/<int:job_id>')
+
     app.run()
 
 
